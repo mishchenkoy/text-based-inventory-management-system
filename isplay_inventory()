@@ -1,0 +1,49 @@
+def display_inventory(inventory):
+    print("Inventory:")
+    for item, quantity in inventory.items():
+        print(f"{item}: {quantity}")
+    print()
+
+def add_item(inventory, item, quantity):
+    if item in inventory:
+        inventory[item] += quantity
+    else:
+        inventory[item] = quantity
+
+def remove_item(inventory, item, quantity):
+    if item in inventory:
+        if inventory[item] <= quantity:
+            del inventory[item]
+        else:
+            inventory[item] -= quantity
+
+def update_inventory(inventory):
+    while True:
+        print("1. Add item")
+        print("2. Remove item")
+        print("3. Display inventory")
+        print("4. Exit")
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == "1":
+            item = input("Enter the item name: ")
+            quantity = int(input("Enter the quantity: "))
+            add_item(inventory, item, quantity)
+        elif choice == "2":
+            item = input("Enter the item name: ")
+            quantity = int(input("Enter the quantity: "))
+            remove_item(inventory, item, quantity)
+        elif choice == "3":
+            display_inventory(inventory)
+        elif choice == "4":
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Try again.\n")
+
+def main():
+    inventory = {}
+    update_inventory(inventory)
+
+if __name__ == "__main__":
+    main()
